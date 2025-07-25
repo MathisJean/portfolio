@@ -1,0 +1,68 @@
+
+.graphify, .orientation_esn
+{
+  background-color: var(--white-dark);
+
+  position: fixed;
+
+  transition:
+    transform 0.7s ease-out,
+    opacity 0.3s ease-out;
+
+  aspect-ratio: 1.1547;
+
+  clip-path: polygon(
+      25% 0%, 75% 0%,
+      100% 50%,
+      75% 100%, 25% 100%,
+      0% 50%
+  );
+
+  opacity: 0;
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+.showcase_video
+{
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  
+  position: absolute;
+
+  top: -50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+
+  border-radius: var(--border-radius);
+
+  padding: 2em;
+
+  opacity: 0;
+
+  z-index: 2;
+
+  box-shadow: var(--shadow-drop);
+
+  pointer-events: none;
+
+  transition: 
+    top 0.3s ease-out,
+    opacity 0.3s ease-out;
+}
+
+.showcase_video h3
+{
+  padding-bottom: 0.5em;
+
+  font-weight: 600;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "Personal Portflio of my Projects",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathisJean/Portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MathisJean/Portfolio/issues"
+  },
+  "homepage": "https://github.com/MathisJean/Portfolio#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "matter-js": "^0.20.0"
+  }
+}

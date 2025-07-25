@@ -1,0 +1,58 @@
+
+.navbar
+{
+    display: flex;
+    flex-direction: row;
+
+    position: sticky;
+
+    top: 0%;
+    left: 0%;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0%;
+
+    background-color: var(--blue);
+    color: var(--blue-light);
+
+    z-index: 5;
+}
+
+.navbar-logo
+{
+    display: flex;
+
+    width: 50%;
+}
+
+.navbar-navigation
+{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 50%;
+
+    margin: 0%;
+    padding: 0%;
+
+    list-style: none;
+}
+
+.navbar-navigation li
+{
+    font-weight: 600;
+
+    padding: 1.5em 2em;
+
+    transition: background-color 0.2s ease;
+}
+
+.navbar-navigation li:hover
+{
+    background-color: var(--blue-dark);
+}
