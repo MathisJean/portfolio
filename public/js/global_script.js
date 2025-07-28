@@ -1,5 +1,33 @@
 
-showcase = document.querySelector(".hex_background")
+const showcase = document.querySelector(".hex_background")
+const hero = document.querySelector(".landing_hero") ? document.querySelector(".landing_hero") : null;
+
+//Fade in on load
+window.addEventListener("DOMContentLoaded", () => 
+{
+    showcase.classList.add("fade_in");
+});
+
+//Fade out on link click
+document.querySelectorAll("a").forEach(link =>
+{
+    link.addEventListener("click", (event) =>
+    {
+        const href = link.getAttribute("href");
+        const is_blank = link.target === "_blank";
+
+        //Ignore anchor, mailto, or target="_blank" links
+        if(is_blank || href.startsWith("#") || href.startsWith("mailto:")) return;
+
+        //Prevent default, fade out, then navigate
+        event.preventDefault();
+        showcase.classList.remove("fade_in");
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 400);
+    });
+});
 
 let scale = 2;            //Initial zoom
 const min_scale = 1;     //Min zoom out
@@ -19,7 +47,12 @@ document.addEventListener("wheel", (event) =>
         scale = Math.max(scale - scale_step, min_scale);
     }
 
-    showcase.style.transform = `scale(${scale})`;
+    showcase.style.transform = `scale(${scale})`;    
+
+    if(hero)
+    {
+        hero.style.transform = `scale(${scale})`;
+    }
 }, 
 { 
     passive: false

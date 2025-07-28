@@ -22,7 +22,9 @@
   --grey-dark: #4a4a4a;
   --black: #000000;
   --white: #ffffff;
-  --white-dark: #f1f1f1;
+  --white-1: #f2f2f2;
+  --white-2: #f1f1f1;
+  --white-3: #ececec;
 }
 
 
@@ -119,61 +121,129 @@ h6, a
 
 .hex_background
 {
-  display: grid;
-  grid-template-columns: repeat(16, auto);
-  grid-template-rows: repeat(10, auto);
+    display: grid;
+    grid-template-columns: repeat(16, auto);
+    grid-template-rows: repeat(10, auto);
 
-  background: radial-gradient(circle, white 0%, var(--white-dark) 100%);
-  background-size: cover;     
-  background-repeat: no-repeat;
-  background-position: center;
+    background: radial-gradient(circle, white 0%, var(--white-1) 100%);
+    background-size: cover;     
+    background-repeat: no-repeat;
+    background-position: center;
 
-  width: 100%;
-  height: 102vh;
+    width: 100%;
+    height: 102vh;
 
-  margin-top: -6%;
+    margin: none;
 
-  padding: 1em;
+    padding: 1em;
 
-  transform: scale(2);
-  transform-origin: center center;
+    transform: scale(2);
+    transform-origin: center center;
 
-  transition: transform ease-out 0.5s;
+    transition:
+        transform ease-out 0.5s,
+        opacity 1s ease;
 
-  overflow-y: hidden;
+    overflow-y: hidden;
+}
+
+.hex_background::before
+{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, white 0%, var(--white-3) 100%);
+  opacity: 0;
+  animation: background_pulse 5s ease infinite;
+}
+
+@keyframes background_pulse 
+{
+  0%   { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.fade
+{
+    opacity: 0;
+}
+
+.fade_in
+{
+    opacity: 1;
+}
+
+.blur
+{    
+  filter: blur(5px);
 }
 
 .hex 
 {
-  background: var(--white-dark);
+    display: flex;
 
-  margin-bottom: -30%;
+    justify-content: center;
+    align-items: center;
 
-  aspect-ratio: 1.1547;
+    color: #000000;
+    background: var(--white-2);
 
-  clip-path: 
-    polygon(
-      25% 0%, 75% 0%,
-      100% 50%,
-      75% 100%, 25% 100%,
-      0% 50%
-    );
+    margin-bottom: -30%;
 
-  transition: transform 0.2s ease;
+    aspect-ratio: 1.1547;
 
-  overflow: visible;
+    clip-path: 
+        polygon(
+        25% 0%, 75% 0%,
+        100% 50%,
+        75% 100%, 25% 100%,
+        0% 50%
+        );
 
-  filter: blur(5px);
+    transition:
+        transform 0.2s ease,
+        filter 0.1s ease;
+
+    overflow: visible;
+}
+
+.hex > p
+{
+    font-size: 0.6em;
+    font-weight: 600;
+    font-style: italic;
+
+    transition: opacity 0.1s;
+}
+
+.project
+{
+    transform: scaleX(-1);
+}
+
+.hex > .project, .hex:hover > .action
+{
+    opacity: 0;
+}
+
+.hex > .action, .hex:hover > .project
+{
+    opacity: 1;
 }
 
 .hex:hover
 {
-  transform: rotateY(20deg) rotateX(20deg);
+    filter: brightness(90%);
+
+    transform: rotateY(180deg) rotateX(10deg);
 }
 
-.hex:hover:active
+.hex:active
 {
-  animation: rotate 0.3s forwards;
+    filter: brightness(90%);
+
+    transform: rotateY(190deg) rotateX(10deg);
 }
 
 .hex p
@@ -185,8 +255,8 @@ h6, a
 
 @keyframes rotate
 {
-  from {transform: rotateY(20deg) rotateX(20deg) rotateZ(0deg);}
-  to {transform: rotateY(20deg) rotateX(20deg) rotateZ(360deg);}
+  from {transform: rotateY(10deg) rotateX(0deg) rotateZ(0deg);}
+  to {transform: rotateY(180deg) rotateX(10deg) rotateZ(0deg);}
 }
 
 .hex:nth-child(odd)
