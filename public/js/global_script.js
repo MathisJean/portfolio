@@ -1,14 +1,18 @@
 
+//----Elements from DOM----//
 const showcase = document.querySelector(".hex_background")
-const hero = document.querySelector(".landing_hero") ? document.querySelector(".landing_hero") : null;
+const hero_title = document.querySelector(".hero_title") ? document.querySelector(".hero_title") : null;
+const hero_subtitle = document.querySelector(".hero_subtitle") ? document.querySelector(".hero_subtitle") : null;
 
-//Fade in on load
+//----Fade Content In and Out----//
+
+//Fade in Content on Load
 window.addEventListener("DOMContentLoaded", () => 
 {
     showcase.classList.add("fade_in");
 });
 
-//Fade out on link click
+//Fade out Content on Link Click
 document.querySelectorAll("a").forEach(link =>
 {
     link.addEventListener("click", (event) =>
@@ -16,10 +20,10 @@ document.querySelectorAll("a").forEach(link =>
         const href = link.getAttribute("href");
         const is_blank = link.target === "_blank";
 
-        //Ignore anchor, mailto, or target="_blank" links
+        //Ignore Anchor, Mailto, or target="_blank" Links
         if(is_blank || href.startsWith("#") || href.startsWith("mailto:")) return;
 
-        //Prevent default, fade out, then navigate
+        //Prevent Default Behavior, Fade out, then Navigate
         event.preventDefault();
         showcase.classList.remove("fade_in");
 
@@ -29,11 +33,19 @@ document.querySelectorAll("a").forEach(link =>
     });
 });
 
-let scale = 2;            //Initial zoom
-const min_scale = 1;     //Min zoom out
-const max_scale = 2.5;       //Max zoom in
-const scale_step = 0.05;    //Zoom speed
+//----Scroll Zoom----//
 
+let scale = 2; //Initial zoom
+const min_scale = 1; //Min zoom out
+const max_scale = 2.5; //Max zoom in
+const scale_step = 0.05; //Zoom speed
+
+let opacity = 0; //Inital opacity
+const min_opacity = 0; //Min opacity
+const max_opacity = 1; //Max opacity
+const opacity_step = 0.05; //Opacity Fill Speed
+
+//On Wheel Input
 document.addEventListener("wheel", (event) =>
 {
     event.preventDefault();
@@ -41,79 +53,80 @@ document.addEventListener("wheel", (event) =>
     if(event.deltaY < 0)
     {
         scale = Math.min(scale + scale_step, max_scale);
+
+        opacity = Math.max(opacity - opacity_step, min_opacity);
     }
-    else
-    {
+    else   
+    { 
         scale = Math.max(scale - scale_step, min_scale);
+
+        opacity = Math.min(opacity + opacity_step, max_opacity);
     }
 
     showcase.style.transform = `scale(${scale})`;    
 
-    if(hero)
+    if(hero_title)
     {
-        hero.style.transform = `scale(${scale})`;
+        hero_title.style.opacity = opacity;
+        hero_subtitle.style.opacity = opacity;
     }
 }, 
 { 
     passive: false
 });
 
-function showcase_project(hex)
+//Remove Hint Once Scrolling
+const hint = document.querySelector(".hint");
+function scroll_handler(event)
 {
-    const rect = hex.getBoundingClientRect();
-    const width = hex.offsetWidth;
-    const height = hex.offsetHeight;
+    event.preventDefault();
 
-    const selector = hex.getAttribute("project_class_data");
-    if (!selector) return;
+    hint.style.animation = "none"; //Stop Animation
+    void hint.offsetHeight; //Force Reflow
+    hint.style.opacity = 0;
 
-    const project_showcase = document.querySelector(selector);
-    if (!project_showcase) return;
-
-    //Reset style for animation start
-    project_showcase.style.width = `${width}px`;
-    project_showcase.style.height = `${height}px`;
-    project_showcase.style.opacity = 0;
-
-    //Position it over the hex
-    project_showcase.style.transform = `translate(${rect.left}px, ${rect.top}px) scale(1)`;
-
-    //Force reflow so the transform takes effect before animating
-    void showcase.offsetWidth;
-
-    requestAnimationFrame(() =>
-    {
-        const targetX = (window.innerWidth / 2) - (width / 2);
-        const targetY = (window.innerHeight / 2) - (height / 2);
-
-        project_showcase.style.transform = `translate(${targetX}px, ${targetY}px) scale(7)`;
-        project_showcase.style.opacity = 1;
-    });
+    document.removeEventListener("wheel", scroll_handler, { passive: false }); //Remove Event Listener
 }
 
-document.querySelectorAll('.project_hex').forEach(hex =>
+document.addEventListener("wheel", scroll_handler, { passive: false });
+
+//Hex Animation on Hover
+Array.from(showcase.querySelectorAll(".hex")).forEach(hex => 
 {
-    hex.addEventListener('mouseenter', () =>
+    hex.addEventListener("mouseover", rotate_hex)
+    hex.addEventListener("click", reset_hex);
+})
+
+//Function to Rotate Hexes
+function rotate_hex(event)
+{
+    let hex = event.target.classList.contains("hex") ? event.target : event.target.parentNode;
+    let p = hex.querySelector("p");
+
+    hex.style.transform = "rotateY(180deg)";
+    hex.style.backgroundImage = "none";
+    hex.style.backgroundColor = hex.dataset.bgColor || "#e0e0e0"; //Fallback
+
+    if(p)
     {
-        showcase_project(hex);
-    });
+        p.style.opacity = "1";
+        p.style.backgroundColor = "transparent"
+    }
+}
 
-    hex.addEventListener('mouseleave', () =>
+//Function to Reset Hexes
+function reset_hex(event)
+{
+    let hex = event.target.classList.contains("hex") ? event.target : event.target.parentNode;
+    let p = hex.querySelector("p");
+
+    hex.style.transform = "rotateY(0deg)";
+    hex.style.backgroundImage = `url(${hex.dataset.bgImg})` || "none";
+    hex.style.backgroundColor = "#f1f1f1";
+
+    if(p)
     {
-        const selector = hex.getAttribute("project_class_data");
-        const project_showcase = document.querySelector(selector);
-
-        if(project_showcase)
-        {
-            const rect = hex.getBoundingClientRect();
-
-            project_showcase.style.transform = `translate(${rect.left}px, ${rect.top}px) scale(1)`;
-            project_showcase.style.opacity = 0;
-        }
-    });
-});
-
-
-
-
-
+        p.style.opacity = "0";
+        p.style.backgroundColor = "transparent"
+    }
+}

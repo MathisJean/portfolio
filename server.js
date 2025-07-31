@@ -35,9 +35,15 @@ app.set("view engine", "ejs");
 
 //----Using Routers----//
 
+//Redirect root from "/" to "/home"
+app.get('/', (req, res) =>
+{
+  res.redirect(301, '/home');
+});
+
 //Home
 const home_router = require('./routes/home_router');
-app.use('/', home_router);
+app.use('/home', home_router);
 
 //Projects
 const projects_router = require('./routes/projects_router');
@@ -67,5 +73,5 @@ const sslServer = https.createServer(
 //Start up server
 sslServer.listen(port, host, () =>  
 {
-  console.log(`Server running at https://${host}:${port}/projects close it with CTRL + C`);
+  console.log(`Server running at https://${host}:${port} close it with CTRL + C`);
 });

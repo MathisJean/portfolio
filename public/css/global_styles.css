@@ -2,29 +2,18 @@
 :root
 {
     /* Blues */
-    --blue-light: #d1e8ff;      /* Light Blue */
-    --blue: #004a75;            /* Medium Blue */
-    --blue-dark: #002d47;       /* Dark Blue */
+    --blue-light: #d1e8ff;
+    --blue: #004a75;
+    --blue-dark: #002d47;
 
-    /* Accent Colors */
-    --pink: #e6678a;
-    --yellow: #f2c94c; 
-    --orange: #f2994a;      
-    --teal: #2a9d8f;
-    --blue-sky: #4a90e2;
-    --purple: #9b51e0;  
-    --green: #27ae60;      
-    --red: #eb5757; 
-
-
-  /* Neutrals */
-  --grey-light: #e0e0e0;
-  --grey-dark: #4a4a4a;
-  --black: #000000;
-  --white: #ffffff;
-  --white-1: #f2f2f2;
-  --white-2: #f1f1f1;
-  --white-3: #ececec;
+    /* Neutrals */
+    --grey-light: #e0e0e0;
+    --grey-dark: #4a4a4a;
+    --black: #000000;
+    --white: #ffffff;
+    --white-1: #f2f2f2;
+    --white-2: #f1f1f1;
+    --white-3: #ececec;
 }
 
 
@@ -119,6 +108,35 @@ h6, a
     user-select: none;         /* Standard */
 }
 
+.hint
+{
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 2em;
+  font-weight: 300;
+  font-style: italic;
+
+  z-index: 5;
+
+  pointer-events: none;
+  animation: pulse 7s ease-in-out infinite forwards;
+  transition: opacity 0.5s ease-out;
+}
+
+@keyframes pulse
+{
+  0%   { opacity: 0.2; }
+  25%  { opacity: 0.7; }
+  50%  { opacity: 0.4; }
+  75%  { opacity: 0.9; }
+  100% { opacity: 0.2; }
+}
+
 .hex_background
 {
     display: grid;
@@ -134,8 +152,9 @@ h6, a
     height: 102vh;
 
     margin: none;
+    margin-top: -2em;
 
-    padding: 1em;
+    padding: 0 1em;
 
     transform: scale(2);
     transform-origin: center center;
@@ -189,6 +208,10 @@ h6, a
     color: #000000;
     background: var(--white-2);
 
+    background-size: cover;     
+    background-repeat: no-repeat;
+    background-position: center;
+
     margin-bottom: -30%;
 
     aspect-ratio: 1.1547;
@@ -203,47 +226,10 @@ h6, a
 
     transition:
         transform 0.2s ease,
+        background-color 0.2s ease,
         filter 0.1s ease;
 
     overflow: visible;
-}
-
-.hex > p
-{
-    font-size: 0.6em;
-    font-weight: 600;
-    font-style: italic;
-
-    transition: opacity 0.1s;
-}
-
-.project
-{
-    transform: scaleX(-1);
-}
-
-.hex > .project, .hex:hover > .action
-{
-    opacity: 0;
-}
-
-.hex > .action, .hex:hover > .project
-{
-    opacity: 1;
-}
-
-.hex:hover
-{
-    filter: brightness(90%);
-
-    transform: rotateY(180deg) rotateX(10deg);
-}
-
-.hex:active
-{
-    filter: brightness(90%);
-
-    transform: rotateY(190deg) rotateX(10deg);
 }
 
 .hex p
@@ -251,14 +237,19 @@ h6, a
     display: flex;
 
     position: absolute;
+
+    font-size: 0.6em;
+    font-weight: 600;
+    font-style: italic;
+
+    opacity: 0;
+
+    transform: scaleX(-1);
+
+    transition: opacity 0.1s;
 }
 
-@keyframes rotate
-{
-  from {transform: rotateY(10deg) rotateX(0deg) rotateZ(0deg);}
-  to {transform: rotateY(180deg) rotateX(10deg) rotateZ(0deg);}
-}
-
+/* Align Hex Grid */
 .hex:nth-child(odd)
 {
   margin-top: 50%;
