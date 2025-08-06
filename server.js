@@ -22,14 +22,15 @@ app.use('/about', about_router);
 const contact_router = require('./routes/contact_router');
 app.use('/contact', contact_router);
 
+// Optional health check
+app.get('/health', (req, res) => res.send('OK'));
+
 // 404 handler
 app.use((req, res) =>
 {
   res.status(404).render("error");
 });
 
-// Optional health check
-app.get('/health', (req, res) => res.send('OK'));
 
 app.listen(port, () =>
 {
