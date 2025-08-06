@@ -1,5 +1,38 @@
 
-body
+.terminal
 {
-    overflow: hidden;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    height: 60%;
+    width: 60%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+
+    border: gray solid 1px;
+
+    transition: opacity 0.5s ease-out;
+}
+
+.xterm
+{
+    height: 100%;
+    width: 100%;
+
+    padding: 1em 0.25em;
+}
+
+.xterm-screen, .xterm-rows
+{
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.hint
+{
+    color: white !important;
 }

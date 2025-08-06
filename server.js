@@ -4,10 +4,11 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
-app.use(express.static('public'));
-app.set("view engine", "ejs");
 
 app.get('/', (req, res) => res.redirect(301, '/home'));
+
+app.use(express.static('public'));
+app.set("view engine", "ejs");
 
 const home_router = require('./routes/home_router');
 app.use('/home', home_router);
@@ -21,13 +22,16 @@ app.use('/about', about_router);
 const contact_router = require('./routes/contact_router');
 app.use('/contact', contact_router);
 
-app.use((req, res) => {
+// 404 handler
+app.use((req, res) =>
+{
   res.status(404).render("error");
 });
 
 // Optional health check
 app.get('/health', (req, res) => res.send('OK'));
 
-app.listen(port, () => {
+app.listen(port, () =>
+{
   console.log(`Server running on port ${port}`);
 });

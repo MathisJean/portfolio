@@ -3,6 +3,7 @@
 const showcase = document.querySelector(".hex_background")
 const hero_title = document.querySelector(".hero_title") ? document.querySelector(".hero_title") : null;
 const hero_subtitle = document.querySelector(".hero_subtitle") ? document.querySelector(".hero_subtitle") : null;
+const centerpiece = document.querySelector("form") ? document.querySelector("form") : document.querySelector(".terminal") ? document.querySelector(".terminal") : null;
 
 //----Fade Content In and Out----//
 
@@ -46,7 +47,7 @@ const max_opacity = 1; //Max opacity
 const opacity_step = 0.05; //Opacity Fill Speed
 
 //On Wheel Input
-document.addEventListener("wheel", (event) =>
+function scroll_zoom(event)
 {
     event.preventDefault();
 
@@ -70,10 +71,23 @@ document.addEventListener("wheel", (event) =>
         hero_title.style.opacity = opacity;
         hero_subtitle.style.opacity = opacity;
     }
-}, 
-{ 
-    passive: false
-});
+
+    if(centerpiece)
+    {
+        centerpiece.style.opacity = 1 - opacity
+
+        if(centerpiece.style.opacity == 0)
+        {
+            centerpiece.style.pointerEvents = "none"
+        }
+        else
+        {
+            centerpiece.style.pointerEvents = "all"
+        };
+    }
+};
+
+document.addEventListener("wheel", scroll_zoom, { passive: false })
 
 //Remove Hint Once Scrolling
 const hint = document.querySelector(".hint");
@@ -93,7 +107,7 @@ document.addEventListener("wheel", scroll_handler, { passive: false });
 //Hex Animation on Hover
 Array.from(showcase.querySelectorAll(".hex")).forEach(hex => 
 {
-    hex.addEventListener("mouseover", rotate_hex)
+    hex.addEventListener("mouseenter", rotate_hex)
     hex.addEventListener("click", reset_hex);
 })
 
@@ -129,4 +143,20 @@ function reset_hex(event)
         p.style.opacity = "0";
         p.style.backgroundColor = "transparent"
     }
+
+    //Remove Hover Effect Temporarily
+    hex.removeEventListener("mouseenter", rotate_hex)
+
+    setTimeout(() => { hex.addEventListener("mouseenter", rotate_hex); }, 400);
+}
+
+//Update All Special Hexes Background to Have the Same Color
+function background_hex_color(color = "#ffffff")
+{
+    const hexes = document.querySelectorAll('.hex[data-bg-color]');
+
+    hexes.forEach(hex =>
+    {
+        hex.dataset.bgColor = color;
+    });
 }
