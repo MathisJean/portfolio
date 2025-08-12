@@ -34,5 +34,20 @@
 
 .hint
 {
-    color: white !important;
+    color: white;
+}
+
+@media (max-width: 480px)
+{
+    .terminal
+    {
+        display: none;
+    }
+
+    .hex p:hover
+    {
+        color: var(--blue-light);
+
+        text-decoration: underline;
+    }
 }

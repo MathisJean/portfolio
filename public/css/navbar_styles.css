@@ -50,9 +50,19 @@
     padding: 1.5em 2em;
 
     transition: background-color 0.2s ease;
+
+    cursor: pointer;
 }
 
 .navbar-navigation li:hover
 {
     background-color: var(--blue-dark);
+}
+
+@media (max-width: 480px)
+{
+    .navbar-navigation li
+    {
+        padding: 1.5em 1.25em;
+    }
 }
