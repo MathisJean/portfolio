@@ -12,15 +12,13 @@
         <%- include("navbar.ejs") %>
 
         <div class="hero">
-            <div class="hero_title" style="opacity: 0;">
-                <h1>This Is Me</h1>
+            <div class="hero_title_container">
+                <h1 class="hero_title" style="opacity: 0;">This Is Me</h1>
+                <h2 class="hero_subtitle" style="opacity: 0; color: var(--accent-green);">Developer. Designer. Innovator.</h2>
             </div>             
 
-            <div class="hero_subtitle" style="opacity: 0;">
-                <h2 style="color: var(--accent-green);">Developer. Designer. Innovator.</h2>
-            </div>
-
-            <p class="hint">Scroll to Zoom</p>
+            <p id="zoom" class="hint">Scroll to Zoom</p>
+            <p id="click" class="hint">Click to Navigate</p>
 
             <div class="hex_background no_select fade">
                 <!-- 1–27 -->
@@ -53,8 +51,8 @@
                 <div class="hex blur"></div>
 
                 <!-- 28 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_1.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_1.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_1.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_1.jpg" onclick="go_to_slide(this)">
+                    <p>XC Provincials</p>
                 </div>
 
                 <!-- 29–37 -->
@@ -69,8 +67,8 @@
                 <div class="hex blur"></div>
 
                 <!-- 38 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_2.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_2.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_2.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_2.jpg" onclick="go_to_slide(this)">
+                    <p>Workspace</p>
                 </div>
 
                 <!-- 39–41 -->
@@ -79,8 +77,8 @@
                 <div class="hex blur"></div>
 
                 <!-- 42 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_3.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_3.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_3.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_3.jpg" onclick="go_to_slide(this)">
+                    <p>Wrestling</p>
                 </div>
                                                             
                 <!-- 43–71 -->
@@ -115,13 +113,13 @@
                 <div class="hex blur"></div>
 
                 <!-- 72-->                
-                <div class="hex" style="background-image: url(/img/this_is_me_4.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_4.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_4.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_4.jpg" onclick="go_to_slide(this)">
+                    <p>Mathis Jean</p>
                 </div>
 
                 <!-- 73 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_6.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_6.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_6.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_6.jpg" onclick="go_to_slide(this)">
+                    <p>Mid Bout</p>
                 </div>
                                     
                 <!-- 74–82 -->
@@ -137,8 +135,8 @@
                 <div class="hex blur"></div>
                                     
                 <!-- 83 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_5.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_5.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_5.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_5.jpg" onclick="go_to_slide(this)">
+                    <p>Nationals</p>
                 </div>
                                     
                 <!-- 84–93 -->
@@ -153,8 +151,8 @@
                 <div class="hex blur"></div>
 
                 <!-- 94 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_7.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_7.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_7.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_7.jpg" onclick="go_to_slide(this)">
+                    <p>Coding Session</p>
                 </div>
 
                 <!-- 95–108 -->
@@ -174,8 +172,8 @@
                 <div class="hex blur"></div>
 
                 <!-- 109 -->
-                <div class="hex" style="background-image: url(/img/this_is_me_8.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_8.jpg">
-                    <p>Click Me</p>
+                <div class="hex" style="background-image: url(/img/this_is_me_8.jpg);" data-bg-color="#ffffff" data-bg-img="/img/this_is_me_8.jpg" onclick="go_to_slide(this)">
+                    <p>Close Up</p>
                 </div>
 
                 <!-- 110–128 -->
@@ -210,6 +208,8 @@
                 <div class="hex blur"></div>
                 <div class="hex blur"></div>
             </div>
+
+            <div class="slideshow scroll_hide"></div>
         </div>
     </body>
 

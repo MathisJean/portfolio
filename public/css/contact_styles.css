@@ -93,3 +93,18 @@ form div::before
 
     transition: width 0.5s ease-in-out;
 }
+
+@media (max-width: 480px)
+{
+    form
+    {
+        display: none;
+    }
+
+    .hex p:hover
+    {
+        color: var(--blue-light);
+
+        text-decoration: underline;
+    }
+}

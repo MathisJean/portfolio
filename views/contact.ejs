@@ -13,16 +13,14 @@
         <%- include("navbar.ejs") %>
 
         <div class="hero">
-            <div class="hero_title" style="opacity: 0;">
-                <h1>Let's Build</h1>
-            </div>             
+            <div class="hero_title_container">
+                <h1 class="hero_title" style="opacity: 0;">Let's Build</h1>
+                <h2 class="hero_subtitle" style="opacity: 0; color: var(--accent-orange);">Your next project starts here.</h2>
+            </div>  
 
-            <div class="hero_subtitle" style="opacity: 0;">
-                <h2 style="color: var(--accent-orange);">Your next project starts here.</h2>
-            </div>
-
-            <p class="hint">Scroll to Zoom</p>
-
+            <p id="zoom" class="hint">Scroll to Zoom</p>
+            <p id="click" class="hint">Click to Navigate</p>
+            
             <form action="https://formspree.io/f/xyzppvzy" method="post">
                 <label>
                     Name
@@ -76,9 +74,9 @@
                 <div class="hex blur"></div> <!-- 27 -->
                 <div class="hex blur"></div> <!-- 28 -->
 
-                <a class="hex" style="background-image: url(/img/contact_1.jpg);" target="_blank" href="https://www.linkedin.com/in/mathis-jean-897399378/" data-bg-color="#ffffff" data-bg-img="/img/contact_1.jpg"> <!-- 55 -->
-                    <p data-bg-color="transparent">LinkedIn</p>
-                </a>
+                <div class="hex" style="background-image: url(/img/contact_1.jpg);" onclick="window.open('https://www.linkedin.com/in/mathis-jean-897399378/', '_blank');" data-bg-color="#ffffff" data-bg-img="/img/contact_1.jpg"> <!-- 55 -->
+                    <p>LinkedIn</p>
+                </div>
 
                 <div class="hex blur"></div> <!-- 30 -->
                 <div class="hex blur"></div> <!-- 31 -->
@@ -91,9 +89,9 @@
                 <div class="hex blur"></div> <!-- 37 -->
                 <div class="hex blur"></div> <!-- 38 -->
 
-                <a class="hex" style="background-image: url(/img/contact_2.jpg);" target="_blank" href="mailto:mathisojean@hotmail.com" data-bg-color="#ffffff" data-bg-img="/img/contact_2.jpg"> <!-- 77 -->
-                    <p data-bg-color="transparent">Email</p>
-                </a>
+                <div class="hex" style="background-image: url(/img/contact_2.jpg);" onclick="window.open('mailto:mathisojean@hotmail.com', '_blank');" data-bg-color="#ffffff" data-bg-img="/img/contact_2.jpg"> <!-- 77 -->
+                    <p>Email</p>
+                </div>
 
                 <div class="hex blur transparent"></div> <!-- 40 -->
                 <div class="hex blur transparent"></div> <!-- 41 -->
@@ -144,9 +142,9 @@
                 <div class="hex blur"></div> <!-- 83 -->
                 <div class="hex blur"></div> <!-- 84 -->
 
-                <a class="hex" style="background-image: url(/img/contact_3.jpg);" target="_blank" href="https://github.com/MathisJean" data-bg-color="#ffffff" data-bg-img="/img/contact_3.jpg"> <!-- 85 -->
-                    <p data-bg-color="transparent">GitHub</p>
-                </a>
+                <div class="hex" style="background-image: url(/img/contact_3.jpg);" onclick="window.open('https://github.com/MathisJean', '_blank');" data-bg-color="#ffffff" data-bg-img="/img/contact_3.jpg"> <!-- 85 -->
+                    <p>GitHub</p>
+                </div>
 
                 <div class="hex blur"></div> <!-- 86 -->
                 <div class="hex blur"></div> <!-- 87 -->
@@ -194,6 +192,8 @@
                 <div class="hex blur"></div> <!-- 127 -->
                 <div class="hex blur"></div> <!-- 128 -->
             </div>
+
+            <div class="slideshow scroll_hide"></div>
         </div>
     </body>
 

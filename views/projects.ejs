@@ -13,15 +13,13 @@
         <%- include("navbar.ejs") %>
 
         <div class="hero">
-            <div class="hero_title" style="opacity: 0;">
-                <h1>What I Do</h1>
+            <div class="hero_title_container">
+                <h1 class="hero_title" style="opacity: 0;">What I Do</h1>
+                <h2 class="hero_subtitle" style="opacity: 0; color: var(--accent-yellow);">Where vision meets execution.</h2>
             </div>             
 
-            <div class="hero_subtitle" style="opacity: 0;">
-                <h2 style="color: var(--accent-yellow);">Where vision meets execution.</h2>
-            </div>
-
-            <p class="hint">Scroll to Zoom</p>
+            <p id="zoom" class="hint">Scroll to Zoom</p>
+            <p id="click" class="hint">Click to Navigate</p>
 
             <div class="terminal"></div>
             
@@ -48,9 +46,9 @@
                 <div class="hex blur"></div> <!-- 18 -->
                 <div class="hex blur"></div> <!-- 19 -->
 
-                <a class="hex" style="background-image: url(/img/projects_1.jpg);" target="_blank" href="https://allo77.itch.io/storm-woods" data-bg-color="#ffffff" data-bg-img="/img/projects_1.jpg">
-                    <p data-bg-color="transparent">Storm Woods</p>
-                </a> <!-- 20 -->
+                <div class="hex" style="background-image: url(/img/projects_1.jpg);" onclick="window.open('https://allo77.itch.io/storm-woods', '_blank');" data-bg-color="#ffffff" data-bg-img="/img/projects_1.jpg">
+                    <p>Storm Woods</p>
+                </div> <!-- 20 -->
 
                 <div class="hex blur"></div> <!-- 21 -->
                 <div class="hex blur"></div> <!-- 22 -->
@@ -112,10 +110,10 @@
                 <div class="hex blur transparent"></div> <!-- 75 -->
                 <div class="hex blur"></div> <!-- 76 -->
                 <div class="hex blur"></div> <!-- 77 -->
-                
-                <a class="hex" style="background-image: url(/img/projects_2.jpg);" target="_blank" href="https://mathisjean.github.io/graphify-statistics/" data-bg-color="#ffffff" data-bg-img="/img/projects_2.jpg">
-                    <p data-bg-color="transparent">Graphify Statistics</p>
-                </a> <!-- 78 -->
+
+                <div class="hex" style="background-image: url(/img/projects_3.jpg);" onclick="window.open('https://mathisjean.github.io/Service-Dorientation-Website/', '_blank');" data-bg-color="#ffffff" data-bg-img="/img/projects_3.jpg" data-bg-mobile="/img/projects_mobile_3.jpg">
+                    <p>ESN Prototype</p>
+                </div> <!-- 78 -->
 
                 <div class="hex blur"></div> <!-- 79 -->
                 <div class="hex blur"></div> <!-- 80 -->
@@ -124,9 +122,9 @@
                 <div class="hex blur"></div> <!-- 82 -->
                 <div class="hex blur"></div> <!-- 83 -->
                 
-                <a class="hex" style="background-image: url(/img/projects_3.jpg);" target="_blank" href="https://mathisjean.github.io/Service-Dorientation-Website/" data-bg-color="#ffffff" data-bg-img="/img/projects_3.jpg">
-                    <p data-bg-color="transparent">ESN Prototype</p>
-                </a> <!-- 84 -->
+                <div class="hex" style="background-image: url(/img/projects_2.jpg);" onclick="window.open('https://mathisjean.github.io/graphify-statistics/', '_blank');" data-bg-color="#ffffff" data-bg-img="/img/projects_2.jpg" data-bg-mobile="/img/projects_mobile_2.jpg">
+                    <p>Graphify Statistics</p>
+                </div> <!-- 84 -->
 
                 <div class="hex blur"></div> <!-- 85 -->
                 <div class="hex blur transparent"></div> <!-- 86 -->
@@ -175,6 +173,8 @@
                 <div class="hex blur"></div> <!-- 127 -->
                 <div class="hex blur"></div> <!-- 128 -->
             </div>
+
+            <div class="slideshow scroll_hide"></div>
         </div>
     </body>
 

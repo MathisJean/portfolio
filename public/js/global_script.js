@@ -4,6 +4,23 @@ const showcase = document.querySelector(".hex_background")
 const hero_title = document.querySelector(".hero_title") ? document.querySelector(".hero_title") : null;
 const hero_subtitle = document.querySelector(".hero_subtitle") ? document.querySelector(".hero_subtitle") : null;
 const centerpiece = document.querySelector("form") ? document.querySelector("form") : document.querySelector(".terminal") ? document.querySelector(".terminal") : null;
+const slideshow = document.querySelector('.slideshow');
+
+//----Centered Mobile Grid----//
+window.addEventListener('load', () =>
+{
+    if(!showcase) return;
+
+    const scrollableWidth = showcase.scrollWidth;  
+    const scrollableHeight = showcase.scrollHeight;
+
+    const clientWidth = showcase.clientWidth;
+    const clientHeight = showcase.clientHeight;
+
+    showcase.scrollLeft = (scrollableWidth / 2) - (clientWidth / 2);
+    showcase.scrollTop = (scrollableHeight / 2) - (clientHeight / 2);
+});
+
 
 //----Fade Content In and Out----//
 
@@ -87,28 +104,139 @@ function scroll_zoom(event)
     }
 };
 
-document.addEventListener("wheel", scroll_zoom, { passive: false })
+const mobile_media_query = window.matchMedia("(max-width: 480px)");
+
+//Get last known state
+let last_state = sessionStorage.getItem("is_mobile") === "true";
+
+function handle_change(mobile_media_query)
+{
+    //Compare with previous state to decide reload
+    if(mobile_media_query.matches !== last_state)
+    {
+        sessionStorage.setItem("is_mobile", mobile_media_query.matches);
+        location.reload();
+        return;
+    };
+
+    //Attach/remove scroll listener based on current state
+    if(mobile_media_query.matches)
+    {
+        document.removeEventListener("wheel", scroll_zoom, { passive: false });
+    }
+    else
+    {
+        document.addEventListener("wheel", scroll_zoom, { passive: false });
+    };
+};
+
+mobile_media_query.addEventListener("change", handle_change);
+
+// Save initial state and run logic immediately
+sessionStorage.setItem("isMobile", mobile_media_query.matches);
+handle_change(mobile_media_query);
+
+
+//Move Hexes from Grid to Slideshow
+if(mobile_media_query.matches)
+{
+    const img = [];
+
+    showcase.querySelectorAll('.hex').forEach(hex =>
+    {
+        if(hex.hasAttribute('data-bg-color'))
+        {
+            img.push(hex);
+            hex.remove();
+        };
+    });
+
+    img.forEach(element => slideshow.appendChild(element));
+};
+
+//Slideshow Function
+let slides = Array.from(document.querySelectorAll(".hex[data-bg-color]"));
+let slide_index = 0;
+let offset = 0;
+
+function go_to_slide(element)
+{
+    if(!mobile_media_query.matches) return
+
+    temp_index = slides.indexOf(element);
+
+    if(slide_index == temp_index) return
+
+    slide_index < temp_index ? offset = "100%" : offset = "-100%";
+    slide_index === 0 && temp_index === slides.length - 1 ? offset = "-100%" : slide_index === slides.length - 1 && temp_index === 0 ? offset = "100%" : null;
+
+    slide_index = temp_index
+
+    //Clear the container
+    slideshow.innerHTML = '';
+
+    //Wrap-Around Helper
+    const prevIndex = (slide_index - 1 + slides.length) % slides.length;
+    const nextIndex = (slide_index + 1) % slides.length;
+
+    slides[prevIndex].style.transform = `translateX(${offset})`;
+    slides[slide_index].style.transform = `translate(${offset}, 0)`;
+    slides[nextIndex].style.transform = `translateX(${offset})`;
+
+    //Append in Order
+    slideshow.appendChild(slides[prevIndex]);
+    slideshow.appendChild(slides[slide_index]);
+    slideshow.appendChild(slides[nextIndex]);
+
+    slides[prevIndex].offsetWidth;
+    slides[slide_index].offsetWidth;
+    slides[nextIndex].offsetWidth;
+
+    slides[prevIndex].style.transform = "translateX(0%)";
+    slides[slide_index].style.transform = "translate(0%, -10px)";
+    slides[nextIndex].style.transform = "translateX(0%)";
+}
 
 //Remove Hint Once Scrolling
-const hint = document.querySelector(".hint");
+const hint_zoom = document.querySelector("#zoom");
+
 function scroll_handler(event)
 {
     event.preventDefault();
 
-    hint.style.animation = "none"; //Stop Animation
-    void hint.offsetHeight; //Force Reflow
-    hint.style.opacity = 0;
+    hint_zoom.style.animation = "none"; //Stop Animation
+    void hint_zoom.offsetHeight; //Force Reflow
+    hint_zoom.style.opacity = 0;
 
     document.removeEventListener("wheel", scroll_handler, { passive: false }); //Remove Event Listener
 }
 
 document.addEventListener("wheel", scroll_handler, { passive: false });
 
+//Remove on Click
+const hint_click = document.querySelector("#click");
+
+function click_handler(event)
+{
+    event.preventDefault();
+
+    hint_click.style.animation = "none"; //Stop Animation
+    void hint_click.offsetHeight; //Force Reflow
+    hint_click.style.opacity = 0;
+
+    document.removeEventListener("mousedown", click_handler, { passive: false }); //Remove Event Listener
+}
+
+document.addEventListener("mousedown", click_handler, { passive: false });
+
 //Hex Animation on Hover
 Array.from(showcase.querySelectorAll(".hex")).forEach(hex => 
 {
-    hex.addEventListener("mouseenter", rotate_hex)
-    hex.addEventListener("click", reset_hex);
+    if(!mobile_media_query.matches)
+    {
+        hex.addEventListener("mouseenter", rotate_hex)
+        hex.addEventListener("click", reset_hex);
+    };
 })
 
 //Function to Rotate Hexes

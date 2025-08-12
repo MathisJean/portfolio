@@ -1,0 +1,10 @@
+
+@media (max-width: 480px)
+{
+    .hex p:hover
+    {
+        color: var(--blue-light);
+
+        text-decoration: underline;
+    }
+}
