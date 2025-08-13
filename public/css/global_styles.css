@@ -197,6 +197,8 @@ h6, a
 
   transform: translate(-50%, -50%);
 
+  width: 100%;
+
   font-size: 2em;
   font-weight: 300;
   font-style: italic;
