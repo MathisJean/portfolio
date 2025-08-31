@@ -197,6 +197,31 @@ function go_to_slide(element)
     slides[nextIndex].style.transform = "translateX(0%)";
 }
 
+let touch_start
+let touch_end
+
+window.addEventListener("touchstart", event => 
+{
+    touch_start = event.touches[0].clientX
+})
+
+window.addEventListener("touchend", event => 
+{
+    touch_end = event.changedTouches[0].clientX
+
+    let index = touch_start - touch_end > 50 ? slide_index + 1 : touch_start - touch_end < -50 ? slide_index - 1: undefined
+
+    if(index == -1) index = 7
+    if(index == 8) index = 0
+
+    if(index != undefined)
+    {
+        go_to_slide(slides[index])
+
+        click_handler(event)
+    }
+});
+
 //Remove Hint Once Scrolling
 const hint_zoom = document.querySelector("#zoom");
 
