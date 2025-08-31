@@ -240,19 +240,7 @@ document.addEventListener("wheel", scroll_handler, { passive: false });
 
 //Remove on Click
 const hint_click = document.querySelector("#click");
-
-function click_handler(event)
-{
-    event.preventDefault();
-
-    hint_click.style.animation = "none"; //Stop Animation
-    void hint_click.offsetHeight; //Force Reflow
-    hint_click.style.opacity = 0;
-
-    document.removeEventListener("mousedown", click_handler, { passive: false }); //Remove Event Listener
-}
-
-document.addEventListener("mousedown", click_handler, { passive: false });
+let feature_cards = Array.from(document.querySelectorAll(".hex[data-bg-color]"));
 
 //Hex Animation on Hover
 Array.from(showcase.querySelectorAll(".hex")).forEach(hex => 

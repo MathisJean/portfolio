@@ -26,10 +26,14 @@ app.use('/contact', contact_router);
 // Optional health check
 app.get('/health', (req, res) => res.send('OK'));
 
-// 404 handler
+app.get('/error', (req, res) =>
+{
+  res.status(404).render('error');
+});
+
 app.use((req, res) =>
 {
-  res.status(404).render("error");
+  res.redirect('/error'); //Redirects the browser to /error
 });
 
 
