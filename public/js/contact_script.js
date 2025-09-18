@@ -4,10 +4,10 @@ const color = getComputedStyle(root).getPropertyValue('--accent-orange').trim();
 
 background_hex_color(color);
 
-slide_index = 1;
+slide_index = 2;
 
 //Initial Slideshow render
-go_to_slide(slides[0]);
+go_to_slide(slides[1]);
 
 if(mobile_media_query.matches)
 {

@@ -211,8 +211,8 @@ window.addEventListener("touchend", event =>
 
     let index = touch_start - touch_end > 50 ? slide_index + 1 : touch_start - touch_end < -50 ? slide_index - 1: undefined
 
-    if(index == -1) index = 7
-    if(index == 8) index = 0
+    if(index == -1) index = slides.length - 1
+    if(index == slides.length) index = 0
 
     if(index != undefined)
     {

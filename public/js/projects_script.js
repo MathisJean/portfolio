@@ -5,17 +5,17 @@ const color = getComputedStyle(root).getPropertyValue('--accent-yellow').trim();
 slide_index = 3;
 
 //Initial Slideshow render
-go_to_slide(slides[1]);
+go_to_slide(slides[2]);
 
 if(mobile_media_query.matches)
 {
     let project = document.createElement("div");
 
     project.classList.add("hex");
-    project.style = "background-image: url(/img/projects_4.jpg);";
+    project.style = "background-image: url(/img/projects_mobile_5.jpg);";
 
     project.dataset.bgColor = "#ffffff";
-    project.dataset.bgImg = "/img/projects_4.jpg";
+    project.dataset.bgImg = "/img/projects_mobile_5.jpg";
 
     project.innerHTML = 
     `
