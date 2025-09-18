@@ -28,6 +28,27 @@ feature_cards.forEach(card =>
     card.addEventListener("mousedown", click_handler, { passive: false }); //Remove Event Listener
 });
 
+feature_cards = feature_cards.filter((_, index) => index !== 1);
+
+function click_handler(event)
+{
+    event.preventDefault();
+
+    hint_click.style.animation = "none"; //Stop Animation
+    void hint_click.offsetHeight; //Force Reflow
+    hint_click.style.opacity = 0;
+
+    feature_cards.forEach(card => 
+    {
+        card.removeEventListener("mousedown", click_handler, { passive: false }); //Remove Event Listener
+    });
+}
+
+feature_cards.forEach(card => 
+{
+    card.addEventListener("mousedown", click_handler, { passive: false }); //Remove Event Listener
+});
+
 if(mobile_media_query.matches)
 {
     let project = document.createElement("div");
