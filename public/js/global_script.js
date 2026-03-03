@@ -220,7 +220,7 @@ let feature_cards = Array.from(document.querySelectorAll(".hex[data-bg-color]"))
 //Hex Animation on Hover
 Array.from(showcase.querySelectorAll(".hex")).forEach(hex => 
 {
-    if(!mobile_media_query.matches)
+    if(!mobile_media_query.matches && !hex.dataset.bgColor)
     {
         hex.addEventListener("mouseenter", rotate_hex)
         hex.addEventListener("click", reset_hex);
@@ -235,7 +235,7 @@ function rotate_hex(event)
 
     hex.style.transform = "rotateY(180deg)";
     hex.style.backgroundImage = "none";
-    hex.style.backgroundColor = hex.dataset.bgColor || "#e0e0e0"; //Fallback
+    hex.style.backgroundColor = "#e0e0e0"; //Fallback
 
     if(p)
     {

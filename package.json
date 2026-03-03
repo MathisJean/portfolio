@@ -4,7 +4,8 @@
   "description": "Personal Portflio of my Projects",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "dev": "nodemon server_dev.js"
   },
   "repository": {
     "type": "git",
