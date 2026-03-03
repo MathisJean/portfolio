@@ -5,7 +5,7 @@ const color = getComputedStyle(root).getPropertyValue('--accent-yellow').trim();
 slide_index = 2;
 
 //Initial Slideshow render
-go_to_slide(slides[2]);
+go_to_slide(slides[1]);
 
 feature_cards = feature_cards.filter((_, index) => index !== 1);
 
