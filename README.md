@@ -23,7 +23,7 @@ The entire site is a grid of hexagons on a pulsing grey background with a blue n
 | **Home** | Photos of me, with the tagline *"this is me"* |
 | **Projects** | Screenshots of my projects, plus a terminal window that fades in as you zoom out — the terminal actually runs my [terminal graphing calculator](https://github.com/MathisJean/graphing_calculator) live |
 | **About Me** | An image of the languages and tools I work with, plus a fractured image of my face split across the center hexes |
-| **Contact** | A fading contact form (with scroll, unlike the rest of the site) and links to Credly, GitHub, itch.io, and LinkedIn |
+| **Contact** | A fading contact form and links to Credly, GitHub, itch.io, and LinkedIn |
 
 ## Stack
 
