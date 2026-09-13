@@ -3,7 +3,7 @@
 **A hex-grid personal portfolio site** — zoom-based navigation, no scrollbars, built entirely around a hexagon interaction model.
 
 ![EJS](https://img.shields.io/badge/EJS-B4CA65?style=flat-square&logo=ejs&logoColor=black)
-![Status](https://img.shields.io/badge/status-offline%20%28domain%20expired%29-lightgrey?style=flat-square)
+![Status](https://img.shields.io/badge/status-offline-lightgrey?style=flat-square)
 
 > [!NOTE]
 > The live domain has since expired. This repo is the source for reference — see below for what it looked like and how it worked.
